@@ -43,6 +43,13 @@ jobs:
       uses: actions/setup-python@main
       with:
         python-version: 3.8
+    - name: Update pip
+      run: |
+        python -m pip install --upgrade pip
+    - name: Modify requirements
+      working-directory: ./hexo_circle_of_friends
+      run: |
+        sed -i 's/uvicorn==0.14.0/uvicorn>=0.15.0,<0.16.0/' requirements.txt
 
     - name: Install requirements
       working-directory: ./hexo_circle_of_friends
